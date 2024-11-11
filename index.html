@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pixably: Generador de diseño gráfico con IA. Crea imágenes personalizadas fácilmente.">
-    <title>Pixably - Generador de Diseño Gráfico con IA</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Pixably - Generador de diseño gráfico con IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-blue: #1A1A2E;
-            --lime: #A3FF69;
-            --light-gray: #F5F5F5;
-            --transition: all 0.3s ease;
+            --light-gray: #f5f5f5;
+            --dark-blue: #1a1a2e;
+            --lime: #58c322;
+            --highlight-color: #A3FF69;
         }
 
         * {
@@ -26,476 +24,437 @@
             font-family: 'Inter', sans-serif;
             color: var(--dark-blue);
             line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar {
-            background: var(--dark-blue);
-            padding: 1rem 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
         }
 
         .logo-container {
-            max-width: 180px;
-            transition: var(--transition);
+            padding: 1rem;
+            background-color: var(--dark-blue);
+            text-align: left;
         }
 
-        .logo-container:hover {
+        .logo-container img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.95)),
+                url('images/hero-bg.jpg') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-logo {
+            max-width: 350px; /* Aumentado el tamaño del logo */
+            margin-bottom: 2rem;
+        }
+
+        .hero-main {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .hero-sub {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .text-light-gray {
+            color: var(--light-gray);
+        }
+
+        .highlight {
+            color: var(--highlight-color);
+            font-weight: 800; /* Letra más gruesa */
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--lime);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #76f23e;
+        }
+
+        .benefits-section {
+            padding: 4rem 2rem;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+
+        .benefits-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
             transform: scale(1.05);
         }
 
-        /* Hero Section */
-        .hero {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 0 1rem;
-        background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.95)),
-                    url('images/hero-bg.jpg') center/cover no-repeat;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero-logo {
-        width: 300px; /* Ajusta según el tamaño que necesites */
-        height: auto;
-        margin-bottom: 2rem;
-        animation: fadeInUp 1s ease;
-    }
-
-    
-    .hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 1rem;
-    background: 
-        linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.95)),
-        url('images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content {
-    max-width: 800px;
-    position: relative;
-    z-index: 1;
-    color: var(--light-gray);
-    animation: fadeInUp 1s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.hero-main {
-    font-size: 2.2rem;
-    font-weight: 400;
-    line-height: 1.4;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.hero-sub {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    background: linear-gradient(45deg, #fff, #A3FF69);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.highlight {
-    font-weight: 900;
-    color: #A3FF69;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    font-size: 1.4rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--dark-blue);
-    background: var(--lime);
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    animation: pulse 2s ease-in-out infinite;
-    box-shadow: 0 4px 15px rgba(163, 255, 105, 0.3);
-    cursor: pointer;
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(163, 255, 105, 0.4);
-    background: #b4ff85;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .hero-main {
-        font-size: 1.8rem;
-    }
-
-    .hero-sub {
-        font-size: 1.4rem;
-    }
-
-    .cta-button {
-        font-size: 1.2rem;
-        padding: 0.8rem 1.6rem;
-    }
-}
-
-        /* Galería de ejemplos */
-        .examples-section {
-            padding: 5rem 2rem;
-            background: var(--light-gray);
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--lime);
+            margin-bottom: 1rem;
         }
 
+        .benefit-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-description {
+            font-size: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .premium-card {
+            background-color: var(--dark-blue);
+            border: 2px solid var(--lime);
+            color: white;
+        }
+
+        .premium-icon {
+            color: var(--lime);
+        }
+
+        .premium-card .benefit-description {
+            color: white; /* Cambiado el color del texto a blanco */
+        }
+
+        .examples-section {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
+            margin-bottom: 2rem;
             color: var(--dark-blue);
+            font-size: 2rem;
+            font-weight: 700;
         }
 
         .example-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
         }
 
         .example-card {
-            aspect-ratio: 1/1;
-            border-radius: 15px;
-            overflow: hidden;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: var(--transition);
             cursor: pointer;
-            position: relative;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .example-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: scale(1.05);
         }
 
         .example-card img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
+            height: auto;
+            display: block;
         }
 
-        .example-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Modal */
+        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1100;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .modal.active {
-            display: flex;
-            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
         }
 
         .modal-content {
             position: relative;
-            margin: auto;
             max-width: 90%;
-            max-height: 90vh;
+            max-height: 90%;
+            margin: 2rem auto;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
         }
 
         .modal-image {
-            max-width: 1280px;
-            max-height: 80vh;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(163, 255, 105, 0.2);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: var(--lime);
-            font-size: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 5px;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            transform: scale(1.1);
+            max-width: 100%;
+            max-height: 90vh;
         }
 
         .modal-nav {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 0 20px;
-            pointer-events: none;
-        }
-
-        .modal-nav button {
-            background: var(--dark-blue);
-            color: var(--lime);
-            border: 2px solid var(--lime);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            pointer-events: auto;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .modal-nav button:hover {
-            background: var(--lime);
-            color: var(--dark-blue);
-            transform: scale(1.1);
-        }
-
-        /* CTA Section */
-        #cta {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: var(--light-gray);
-        }
-
-        .cta-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gradio-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            height: 800px; /* Ajusta esta altura según necesites */
-        }
-        .gradio-iframe {
-            width: 100%;
-            height: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            background-color: var(--dark-blue);
+            padding: 1rem;
             color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        /* Beta section styles */
+        .beta-section {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #2a2a4e 100%);
+            padding: 4rem 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Animaciones */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        .beta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .beta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--lime);
         }
 
-        /* Media Queries */
+        .beta-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--light-gray);
+        }
+
+        .beta-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .beta-content input[type="email"] {
+            padding: 1rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        /* Responsive styles */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .hero-main {
+                font-size: 2rem;
+            }
+
+            .hero-sub {
+                font-size: 1.5rem;
             }
 
             .example-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                padding: 1rem;
+                grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .benefits-container {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="images/logo.png" alt="Pixably Logo">
-        </div>
-    </nav>
+    <div class="logo-container">
+        <img src="images/logo.png" alt="Pixably Logo">
+    </div>
 
     <section class="hero">
         <div class="hero-content">
-            <img src="images/logo.svg" alt="Pixably Logo" class="hero-logo">
-            <p class="hero-main"><span class="highlight">Transforma tus ideas</span> en imágenes con nuestro generador de <span class="highlight">diseño gráfico basado en IA</span></p>
-            <p class="hero-sub">¡Crea diseños <span class="highlight">únicos</span> en minutos!</p>
-            <a href="#cta" class="cta-button">¡Comienza a crear ahora!</a>
+            <img src="images/logo-hero.png" alt="Pixably Logo" class="hero-logo">
+            <h1 class="hero-main">Diseño gráfico profesional con IA</h1>
+            <h2 class="hero-sub">Crea diseños <span class="highlight">increíbles</span> en segundos</h2>
+            <p class="text-light-gray">Únete a la lista de espera para acceder a la beta</p>
+            <a href="#beta" class="cta-button">Unirme a la beta</a>
         </div>
     </section>
-    
+
+    <section class="benefits-section">
+        <h2 class="section-title">Descubre las Ventajas de Usar Pixably</h2>
+        <div class="benefits-container">
+            <div class="benefit-card">
+                <div class="benefit-icon">🎨</div>
+                <div class="benefit-title">Diseños para redes sociales con un solo prompt</div>
+                <div class="benefit-description">Crea contenido atractivo para tus redes sociales en segundos con solo una instrucción.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⏱️</div>
+                <div class="benefit-title">Ahorra tiempo</div>
+                <div class="benefit-description">Genera diseños en minutos sin procesos largos y complicados.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <div class="benefit-title">Ahorra dinero</div>
+                <div class="benefit-description">Reduce costos utilizando nuestra plataforma potenciada por inteligencia artificial.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🔄</div>
+                <div class="benefit-title">Opciones ilimitadas</div>
+                <div class="benefit-description">Obtén tantas opciones de diseño como desees hasta encontrar la perfecta.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <div class="benefit-title">Actualizaciones constantes</div>
+                <div class="benefit-description">Disfruta de nuevas características y mejoras continuas en la plataforma.</div>
+            </div>
+            <div class="benefit-card premium-card">
+                <div class="benefit-icon premium-icon">🏢</div>
+                <div class="benefit-title">Personalización para empresas</div>
+                <div class="benefit-description">Ofrecemos soluciones personalizadas para empresas, asegurando que los diseños generados mantengan su línea gráfica y estilo corporativo. Disponible solo para usuarios premium.</div>
+            </div>
+        </div>
+    </section>
 
     <section class="examples-section">
-        <h2 class="section-title">Ejemplos creados con Pixably</h2>
+        <h2 class="section-title">Ejemplos de diseños creados con Pixably</h2>
         <div class="example-gallery">
-            <div class="example-card" onclick="openModal(0)">
-                <img src="images/example1.png" alt="Ejemplo 1" data-full="images/example1-full.png">
+            <div class="example-card">
+                <img src="images/example1.png" alt="Ejemplo 1">
             </div>
-            <div class="example-card" onclick="openModal(1)">
-                <img src="images/example2.png" alt="Ejemplo 2" data-full="images/example2-full.png">
+            <div class="example-card">
+                <img src="images/example2.png" alt="Ejemplo 2">
             </div>
-            <div class="example-card" onclick="openModal(2)">
-                <img src="images/example3.png" alt="Ejemplo 3" data-full="images/example3-full.png">
+            <div class="example-card">
+                <img src="images/example3.png" alt="Ejemplo 3">
             </div>
-            <div class="example-card" onclick="openModal(3)">
-                <img src="images/example4.png" alt="Ejemplo 4" data-full="images/example4-full.png">
+            <div class="example-card">
+                <img src="images/example4.png" alt="Ejemplo 4">
             </div>
-            <div class="example-card" onclick="openModal(4)">
-                <img src="images/example5.png" alt="Ejemplo 5" data-full="images/example5-full.png">
+            <div class="example-card">
+                <img src="images/example5.png" alt="Ejemplo 5">
             </div>
-            <div class="example-card" onclick="openModal(5)">
-                <img src="images/example6.png" alt="Ejemplo 6" data-full="images/example6-full.png">
+            <div class="example-card">
+                <img src="images/example6.png" alt="Ejemplo 6">
             </div>
+            <div class="example-card">
+                <img src="images/example7.png" alt="Ejemplo 7">
+            </div>
+            <div class="example-card">
+                <img src="images/example8.png" alt="Ejemplo 8">
+            </div>
+        </div>
+    </section>
+
+    <section id="beta" class="beta-section">
+        <div class="beta-content">
+            <h2 class="beta-title">Regístrate para acceso anticipado</h2>
+            <p class="beta-description">Sé de los primeros en probar Pixably y recibe beneficios exclusivos</p>
+            <form id="beta-form" action="https://formspree.io/f/mpwzrdvw" method="POST">
+                <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="cta-button">Registrarme</button>
+            </form>
+            <p id="form-response" style="display:none; color: var(--lime); font-weight: 600; margin-top: 1rem;">¡Gracias por registrarte! Te contactaremos pronto.</p>
         </div>
     </section>
 
     <div class="modal" id="imageModal">
         <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">&times;</button>
-            <img class="modal-image" id="modalImage" src="" alt="Imagen ampliada">
             <div class="modal-nav">
-                <button onclick="changeImage(-1)">&#10094;</button>
-                <button onclick="changeImage(1)">&#10095;</button>
+                <span class="prev">&lt;</span>
+                <span class="next">&gt;</span>
             </div>
+            <img src="" alt="" class="modal-image">
         </div>
     </div>
 
-    <section id="cta">
-        <div class="cta-content">
-            <h2 class="section-title">Empieza a Crear</h2>
-            <p>Genera tu diseño personalizado a continuación. ¡Es fácil y rápido!</p>
-            <div class="gradio-container">
-                <iframe 
-                    class="gradio-iframe"
-                    src="https://fecf753c3b54fe61d9.gradio.live" 
-                    allow="camera;microphone"
-                    frameborder="0"
-                    loading="lazy">
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Pixably. Todos los derechos reservados.</p>
-    </footer>
-
     <script>
-        let currentImageIndex = 0;
-        const images = document.querySelectorAll('.example-card img');
+        // Modal functionality
         const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
+        const modalImg = document.querySelector('.modal-image');
+        const cards = document.querySelectorAll('.example-card');
+        let currentIndex = 0;
 
-        function openModal(index) {
-            currentImageIndex = index;
-            const fullImageSrc = images[index].getAttribute('data-full');
-            modalImage.src = fullImageSrc;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function changeImage(direction) {
-            currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
-            const fullImageSrc = images[currentImageIndex].getAttribute('data-full');
-            modalImage.src = fullImageSrc;
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-            if (modal.classList.contains('active')) {
-                if (e.key === 'ArrowLeft') {
-                    changeImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeImage(1);
-                }
-            }
-        });
-
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                currentIndex = index;
+                const imgSrc = card.querySelector('img').src.replace('.png', '-full.png');
+                modalImg.src = imgSrc;
+                modal.style.display = 'block';
             });
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            modalImg.src = cards[currentIndex].querySelector('img').src.replace('.png', '-full.png');
+        });
+
+        document.querySelector('.next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % cards.length;
+            modalImg.src = cards[currentIndex].querySelector('img').src.replace('.png', '-full.png');
+        });
+
+        // Form submission
+        document.getElementById('beta-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", form.action, true);
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        form.reset();
+                        document.getElementById('form-response').style.display = 'block';
+                    } else {
+                        alert('Hubo un problema con el envío del formulario. Por favor, inténtalo de nuevo.');
+                    }
+                }
+            };
+            xhr.send(formData);
         });
     </script>
 </body>
